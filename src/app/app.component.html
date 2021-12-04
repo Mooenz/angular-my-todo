@@ -3,7 +3,9 @@
     <h1>cosas por hacer</h1>
     <div class="add-container">
       <input class="input" type="text" [(ngModel)]="toDo" />
-      <button class="button" (click)="addToDos(toDo)">Agregar</button>
+      <button class="button" (click)="addToDos(toDo)">
+        <span class="button-add"></span>
+      </button>
     </div>
 
     <p class="noTodo" *ngIf="arrToDos.length === 0">
@@ -12,13 +14,19 @@
 
     <div *ngFor="let do of arrToDos; index as i">
       <div class="li">
-        <p [class]="classLi" id="id{{ i }}">
+        <p id="id{{ i }}">
           {{ do }}
         </p>
         <div class="buttons-container">
-          <button class="button" (click)="deleteToDo(i)">Eliminar</button>
+          <button class="button" (click)="deleteToDo(i)">
+            <span class="button-delete"></span>
+          </button>
 
-          <button class="button" (click)="finishToDo(i)">Terminado</button>
+          <button class="button" (click)="finishToDo(i)" id="btn{{ i }}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.99999 16.2L4.79999 12L3.39999 13.4L8.99999 19L21 6.99998L19.6 5.59998L8.99999 16.2Z" fill="#00ff7f"/>
+              </svg>
+          </button>
         </div>
       </div>
     </div>

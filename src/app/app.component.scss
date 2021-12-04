@@ -1,9 +1,7 @@
-
 main {
   width: 100%;
   height: auto;
   font-family: monospace;
-  margin: 0;
 }
 
 .app {
@@ -19,7 +17,6 @@ main {
 }
 
 h1 {
-  margin: 0 0 20px;
   font-size: 40px;
   font-weight: 700;
   text-decoration: underline;
@@ -29,7 +26,7 @@ h1 {
 .add-container {
   display: flex;
   gap: 20px;
-  margin: 0 0 30px;
+  margin: 30px 0;
 }
 
 .input {
@@ -37,14 +34,14 @@ h1 {
   outline: none;
   padding: 0 20px;
   border: 1px solid transparent;
-  background: #222;
+  background: #444;
   color: #fff;
-  transition-duration: .5s;
-}
+  transition-duration: 0.5s;
 
-.input:focus {
-  border: 1px solid springgreen;
-  transition-duration: 1s;
+  &:focus {
+    border: 1px solid springgreen;
+    transition-duration: 1s;
+  }
 }
 
 .buttons-container {
@@ -54,19 +51,38 @@ h1 {
 
 .button {
   border: none;
-  background: #222;
+  background: #444;
   color: springgreen;
   border-radius: 30px;
-  padding: 8px 16px;
   font-weight: 700;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
+  padding: 5px;
+  height: 38px;
+  width: 38px;
+
+  span {
+    display: block;
+    width: 28px;
+    height: 28px;
+  }
+
+  &-add {
+    background: url("../assets/add.svg") center/contain no-repeat;
+  }
+
+  &-delete {
+    background: url("../assets/remove.svg") center/contain no-repeat;
+  }
+
+  &:hover {
+    opacity: 0.7;
+    transition-duration: 0.5s;
+  }
 }
 
-.button:hover {
-  color: #333;
-  background: springgreen;
-  font-weight: 700;
-  transition-duration: .5s;
+.noTodo {
+  font-size: 30px;
+  color: springgreen;
 }
 
 .li {
@@ -78,13 +94,16 @@ h1 {
   min-width: 500px;
 }
 
-.noTodo {
-  font-size: 30px;
-  font-weight: 700;
-  color: springgreen;
-} 
+.done {
+  text-decoration: line-through;
+  color: #dc143c;
+}
 
-.terminado {
-  text-decoration:line-through;
-  color: crimson;
+.btnDone {
+  background: #dc143c;
+  svg {
+    path {
+      fill: #222;
+    }
+  }
 }

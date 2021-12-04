@@ -13,8 +13,7 @@ export class AppComponent {
 
   
   toDo: string = '';
-  classLi: string = '';
-  finish: boolean = false;
+  done: boolean = false;
   
   saveLocalStorage() {
     localStorage.setItem('todo', JSON.stringify(this.arrToDos)); // guarda en local storage
@@ -38,8 +37,11 @@ export class AppComponent {
 
   finishToDo(indice: number) {
     const indiceStr = indice.toString();
-    const element = document.querySelector(`#id${indiceStr}`) as HTMLElement;
 
-    element.classList.toggle('terminado');
+    const toDo = document.querySelector(`#id${indiceStr}`) as HTMLElement;
+    const btnDone = document.querySelector(`#btn${indiceStr}`) as HTMLElement;
+
+    toDo.classList.toggle('done');
+    btnDone.classList.toggle('btnDone');
   }
 }
