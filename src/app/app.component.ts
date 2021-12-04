@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent {
   arrToDos: string[] = [
     'Estudiar 2 horas enplatzi',
@@ -12,20 +11,28 @@ export class AppComponent {
     'Poner en practica lo aprendido',
   ];
 
+  
   toDo: string = '';
   classLi: string = '';
   finish: boolean = false;
-
+  
+  saveLocalStorage() {
+    localStorage.setItem('todo', JSON.stringify(this.arrToDos)); // guarda en local storage
+  }
+  
+  // getLocalStorage() {
+  //   const dataToDo: string | null = JSON.parse(localStorage.getItem('todo'));// mostrar ToDos
+  // }
+  
   addToDos(argumentToDo: string) {
     this.arrToDos.push(argumentToDo);
     this.toDo = '';
 
-    console.log(
-      'Si lograste cambiar el bg de html o body ayudame =(, mi twitter es : MooenzDev'
-    );
+    this.saveLocalStorage();
+    // console.log(this.getLocalStorage());
   }
 
-  deleteToDo(indice:number) {
+  deleteToDo(indice: number) {
     this.arrToDos.splice(indice, 1);
   }
 
