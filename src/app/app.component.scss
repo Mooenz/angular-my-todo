@@ -44,11 +44,6 @@ h1 {
   }
 }
 
-.buttons-container {
-  display: flex;
-  gap: 10px;
-}
-
 .button {
   border: none;
   background: #444;
@@ -92,18 +87,16 @@ h1 {
   justify-content: space-between;
   gap: 20px;
   min-width: 500px;
-}
 
-.done {
-  text-decoration: line-through;
-  color: #dc143c;
-}
+  li {
+    list-style: none;
+    cursor: pointer;
+  }
 
-.btnDone {
-  background: #dc143c;
-  svg {
-    path {
-      fill: #222;
+  &.true {
+    li {
+      text-decoration: line-through;
+      color: #dc143c;
     }
   }
 }

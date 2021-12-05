@@ -1,47 +1,56 @@
 import { Component } from '@angular/core';
+import { Todo } from './models/Todo';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  arrToDos: string[] = [
-    'Estudiar 2 horas enplatzi',
-    'Tomar un descanso de 30 minutos',
-    'Poner en practica lo aprendido',
+  arrToDos: Todo[] = [
+    {
+      content: 'Estudiar 2 horas en platzi',
+      isCompleted: false,
+    },
+    {
+      content: 'Tomar un descanso de 30 minutos',
+      isCompleted: false,
+    },
+    {
+      content: 'Poner en practica lo aprendido',
+      isCompleted: false,
+    },
   ];
 
-  
   toDo: string = '';
-  done: boolean = false;
-  
-  saveLocalStorage() {
-    localStorage.setItem('todo', JSON.stringify(this.arrToDos)); // guarda en local storage
-  }
-  
+  done: boolean = true;
+
+  // saveLocalStorage() {
+  //   localStorage.setItem('todo', JSON.stringify(this.arrToDos)); // guarda en local storage
+  // }
+
   // getLocalStorage() {
   //   const dataToDo: string | null = JSON.parse(localStorage.getItem('todo'));// mostrar ToDos
   // }
-  
-  addToDos(argumentToDo: string) {
-    this.arrToDos.push(argumentToDo);
+
+  addToDos(contentToDo: string) {
+    console.log(contentToDo);
+    this.arrToDos.push({
+      content: contentToDo,
+      isCompleted: false,
+    });
+
     this.toDo = '';
-
-    this.saveLocalStorage();
-    // console.log(this.getLocalStorage());
   }
 
-  deleteToDo(indice: number) {
-    this.arrToDos.splice(indice, 1);
+  deleteToDo(idTodo: number) {
+    this.arrToDos = this.arrToDos.filter((valor, indice) => idTodo !== indice);
   }
 
-  finishToDo(indice: number) {
-    const indiceStr = indice.toString();
+  doneTodo(idTodo: number) {
+    this.arrToDos.map((valor, indice) => {
+      if (idTodo === indice) valor.isCompleted = !valor.isCompleted;
 
-    const toDo = document.querySelector(`#id${indiceStr}`) as HTMLElement;
-    const btnDone = document.querySelector(`#btn${indiceStr}`) as HTMLElement;
-
-    toDo.classList.toggle('done');
-    btnDone.classList.toggle('btnDone');
+      return valor;
+    });
   }
 }
