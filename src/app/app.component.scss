@@ -6,48 +6,68 @@ main {
 
 .app {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
   color: #fff;
   max-width: 1200px;
   margin: auto;
-  padding: 24px;
+  padding: 70px 24px;
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 700;
+  text-align: center;
   text-decoration: underline;
   text-transform: capitalize;
 }
 
 .add-container {
+  width: 100%;
   display: flex;
+  justify-content: center;
   gap: 20px;
-  margin: 30px 0;
+  margin: 30px auto;
+  max-width: 600px;
+
+  div {
+    width: 100%;
+    max-width: 350px;
+  }
 }
 
 .input {
   border-radius: 30px;
   outline: none;
   padding: 0 20px;
-  border: 1px solid transparent;
+  width: 100%;
+  max-width: 350px;
+  min-height: 38px;
+  border: 2px solid transparent;
   background: #444;
   color: #fff;
   transition-duration: 0.5s;
+  font-size: 16px;
 
   &:focus {
-    border: 1px solid springgreen;
+    border: 2px solid #00ff7f;
     transition-duration: 1s;
   }
+
+  &.true {
+    border: 2px solid #dc143c;
+  }
+}
+
+.noTodo {
+  margin: 10px 0 0;
+  color: #dc143c;
+  text-align: center;
+  transition-duration: 0.5s;
 }
 
 .button {
   border: none;
   background: #444;
-  color: springgreen;
+  color: #00ff7f;
   border-radius: 30px;
   font-weight: 700;
   transition-duration: 0.5s;
@@ -68,16 +88,22 @@ h1 {
   &-delete {
     background: url("../assets/remove.svg") center/contain no-repeat;
   }
-
+  
   &:hover {
     opacity: 0.7;
     transition-duration: 0.5s;
   }
 }
 
-.noTodo {
+.noTodos {
   font-size: 30px;
-  color: springgreen;
+  color: #00ff7f;
+  text-align: center;
+}
+
+ol {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .li {
@@ -86,17 +112,12 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  min-width: 500px;
-
-  li {
-    list-style: none;
-    cursor: pointer;
-  }
+  list-style: none;
+  cursor: pointer;
+  font-size: 18px;
 
   &.true {
-    li {
-      text-decoration: line-through;
-      color: #dc143c;
-    }
+    text-decoration: line-through;
+    color: #dc143c;
   }
 }

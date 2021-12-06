@@ -2,33 +2,35 @@
   <section class="app">
     <h1>cosas por hacer</h1>
     <div class="add-container">
-      <input
-        [(ngModel)]="toDo"
-        #inputToDo="ngModel"
-        class="input"
-        type="text"
-        required
-      />
+      <div>
+        <input
+          [(ngModel)]="toDo"
+          class="input {{ noToDo }}"
+          type="text"
+          placeholder="Tienes algo por hacer?..."
+        />
+        <p class="noTodo" *ngIf="noToDo">💥 El campo es requerido 💥</p>
+      </div>
       <button (click)="addToDos(toDo)" type="button" class="button">
         <span class="button-add"></span>
       </button>
     </div>
 
-    <!-- <p *ngIf="inputToDo.valid === false" class="noTodo">
-      ❌ El campo no debe estar vacio
-    </p> -->
-
-    <p class="noTodo" *ngIf="arrToDos.length === 0">
+    <p class="noTodos" *ngIf="arrToDos.length === 0">
       No tenemos nada que hacer 😪🙈
     </p>
-
-    <div *ngFor="let do of arrToDos; index as i">
-      <ol class="li {{ do.isCompleted }}">
-        <li (click)="doneTodo(i)">{{ i + 1 }}. {{ do.content }}</li>
+    
+    <ol>
+      <li
+        *ngFor="let do of arrToDos; index as i"
+        class="li {{ do.isCompleted }}"
+        (click)="doneTodo(i)"
+      >
+        {{ i + 1 }}. {{ do.content }}
         <button class="button" (click)="deleteToDo(i)">
           <span class="button-delete"></span>
         </button>
-      </ol>
-    </div>
+      </li>
+    </ol>
   </section>
 </main>

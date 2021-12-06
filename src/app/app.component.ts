@@ -6,9 +6,12 @@ import { Todo } from './models/Todo';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor() {
+    
+  }
   arrToDos: Todo[] = [
     {
-      content: 'Estudiar 2 horas en platzi',
+      content: 'Estudiar 2 horas en Platzi',
       isCompleted: false,
     },
     {
@@ -21,25 +24,35 @@ export class AppComponent {
     },
   ];
 
+  getLocalStorage() {
+    const dataToDo: any =localStorage.getItem('todo');// mostrar ToDos
+    // JSON.parse(); convertir de string a un json
+    this.arrToDos = JSON.parse(dataToDo);
+  }
+
   toDo: string = '';
-  done: boolean = true;
+  noToDo: boolean = false;
 
-  // saveLocalStorage() {
-  //   localStorage.setItem('todo', JSON.stringify(this.arrToDos)); // guarda en local storage
-  // }
+  saveLocalStorage() {
+    localStorage.setItem('todo', JSON.stringify(this.arrToDos)); // guarda en local storage
+  }
 
-  // getLocalStorage() {
-  //   const dataToDo: string | null = JSON.parse(localStorage.getItem('todo'));// mostrar ToDos
-  // }
 
   addToDos(contentToDo: string) {
-    console.log(contentToDo);
-    this.arrToDos.push({
-      content: contentToDo,
-      isCompleted: false,
-    });
+    if(contentToDo === "") {
+      this.noToDo = true;
+    } else {
+      this.arrToDos.push({
+        content: contentToDo,
+        isCompleted: false,
+      });
+  
+      this.toDo = '';
+      this.noToDo = false;
 
-    this.toDo = '';
+      this.saveLocalStorage();
+      this.getLocalStorage();
+    }
   }
 
   deleteToDo(idTodo: number) {
