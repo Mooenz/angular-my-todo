@@ -28,11 +28,8 @@ export class TodosComponent implements OnInit {
         content: 'Poner en practica lo aprendido',
         isCompleted: false,
       },
-    ]    
+    ];
   }
-
-
-
 
   getLocalStorage() {
     const dataToDo: any = localStorage.getItem('todo'); // mostrar ToDos
@@ -45,14 +42,14 @@ export class TodosComponent implements OnInit {
   }
 
   addToDos(contentToDo: string) {
-    if(contentToDo === "") {
+    if (contentToDo === '') {
       this.noToDo = true;
     } else {
       this.arrToDos.push({
         content: contentToDo,
         isCompleted: false,
       });
-  
+
       this.toDo = '';
       this.noToDo = false;
 
