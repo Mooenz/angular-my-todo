@@ -1,1 +1,30 @@
-<p>todos works!</p>
+<div class="add-container">
+  <div>
+    <input
+      [(ngModel)]="toDo"
+      class="input {{ noToDo }}"
+      type="text"
+      placeholder="Tienes algo por hacer?..."
+    />
+    <p class="noTodo" *ngIf="noToDo">💥 El campo es requerido 💥</p>
+  </div>
+  <button (click)="addToDos(toDo)" type="button" class="button">
+    <span class="button-add"></span>
+  </button>
+</div>
+
+<ol>
+  <li class="noTodos" *ngIf="arrToDos.length === 0">
+    No tenemos nada que hacer 😪🙈
+  </li>
+  <li
+    *ngFor="let do of arrToDos; index as i"
+    class="li {{ do.isCompleted }}"
+    (click)="doneTodo(i)"
+  >
+    {{ i + 1 }}. {{ do.content }}
+    <button class="button" (click)="deleteToDo(i)">
+      <span class="button-delete"></span>
+    </button>
+  </li>
+</ol>
